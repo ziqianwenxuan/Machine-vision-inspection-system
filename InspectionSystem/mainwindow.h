@@ -21,6 +21,8 @@ public:
 private slots:
     void on_pushButton_clicked();
     void timerUpdate();
+    void on_Account_bt_5_clicked();
+
 private:
     Ui::MainWindow *ui;
     void  openpicture();

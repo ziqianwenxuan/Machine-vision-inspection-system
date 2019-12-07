@@ -1,6 +1,7 @@
 ﻿#include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "qdebug.h"
+#include <QMovie>
 
 #pragma execution_character_set("utf-8")
 
@@ -13,6 +14,12 @@ MainWindow::MainWindow(QWidget *parent)
     QTimer *timer = new QTimer(this);
     connect(timer,SIGNAL(timeout()),this,SLOT(timerUpdate()));
     timer->start(1000); //1000ms 触发一次
+    QMovie *movie = new QMovie("../InspectionSystem/Yundee.gif");
+    ui->LogoShow->setMovie(movie);
+    movie->start();
+    ui->LogoShow->show();
+
+
     openpicture();
 }
 
@@ -30,15 +37,21 @@ void MainWindow::timerUpdate()
 
 }
 
+
 void MainWindow::openpicture()
 {
-    qDebug()<<QString("显示图片");
-    QGraphicsScene *scene = new QGraphicsScene(this);
-    ui->date_view->setScene(scene);
-    scene->addPixmap( QPixmap("1.png") );
 
-    ui->date_view->show();
-    qDebug()<<QString("图片没有显示");
+    QGraphicsScene *scene_camera = new QGraphicsScene(this);
+    QGraphicsScene *scene_date = new QGraphicsScene(this);
+    ui->graphics_View->setScene(scene_camera);
+    ui->date_view->setScene(scene_date);
+
+    scene_camera->addPixmap( QPixmap("../InspectionSystem/camera.png").scaled(ui->graphics_View->size()) );
+    scene_date->addPixmap( QPixmap("../InspectionSystem/date.png") );
+
+//    ui->date_view->resize(ui->date_view->width() + 10, ui->date_view->height() + 10);
+//    ui->date_view->show();
+
 }
 
 void MainWindow::on_pushButton_clicked()
@@ -51,3 +64,16 @@ void MainWindow::on_pushButton_clicked()
 }
 
 
+
+void MainWindow::on_Account_bt_5_clicked()
+{
+    if( QMessageBox::question(this,tr("Quit"), tr("Are you sure to quit this application?"),QMessageBox::Yes, QMessageBox::No )== QMessageBox::Yes);
+
+    {
+            QApplication* app;
+            app->quit();
+
+            qDebug()<<"程序退出！";
+        }
+
+}
