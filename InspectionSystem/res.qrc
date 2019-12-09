@@ -1,0 +1,14 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>images/关机.ico</file>
+        <file>images/开机.ico</file>
+        <file>images/锁屏.ico</file>
+        <file>images/账户.ico</file>
+        <file>images/关机.png</file>
+        <file>images/开机.png</file>
+        <file>images/锁屏.png</file>
+        <file>images/账户.png</file>
+        <file>images/灯泡亮.jpg</file>
+        <file>images/灯泡灭.jpg</file>
+    </qresource>
+</RCC>

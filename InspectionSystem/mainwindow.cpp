@@ -18,9 +18,16 @@ MainWindow::MainWindow(QWidget *parent)
     ui->LogoShow->setMovie(movie);
     movie->start();
     ui->LogoShow->show();
-
-
     openpicture();
+//   ui->Run_bt->setGeometry(77,69,300,300);
+   ui->Run_bt->setGeometry(70,70,200,200);
+   ui->Run_bt->setStyleSheet("QPushButton{font-size:80px;\
+                                   color:yellow;\
+                              background-color:rgba(0,255,0,200);\
+                                     border-radius:100px;\
+                                       }");
+
+
 }
 
 MainWindow::~MainWindow()
@@ -65,7 +72,7 @@ void MainWindow::on_pushButton_clicked()
 
 
 
-void MainWindow::on_Account_bt_5_clicked()
+void MainWindow::on_Exit_bt_clicked()
 {
     if( QMessageBox::question(this,tr("Quit"), tr("Are you sure to quit this application?"),QMessageBox::Yes, QMessageBox::No )== QMessageBox::Yes);
 
@@ -75,5 +82,27 @@ void MainWindow::on_Account_bt_5_clicked()
 
             qDebug()<<"程序退出！";
         }
+
+}
+
+void MainWindow::on_Run_bt_clicked()
+{
+    if(this->ui->Run_bt->text()=="START"){
+
+        ui->Run_bt->setStyleSheet("QPushButton{font-size:80px;\
+                                        color:yellow;\
+                                   background-color:rgba(255,0,0,200);\
+                                          border-radius:100px;\
+                                            }");
+        this->ui->Run_bt->setText("STOP");
+    }else {
+    ui->Run_bt->setStyleSheet("QPushButton{font-size:80px;\
+                                color:yellow;\
+                           background-color:rgba(0,255,0,200);\
+                                  border-radius:100px;\
+                                    }");
+
+        this->ui->Run_bt->setText("START");
+                                  }
 
 }

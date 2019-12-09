@@ -24,7 +24,7 @@
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout_9" stretch="2,8">
         <item>
-         <layout class="QVBoxLayout" name="verticalLayout" stretch="1,1,1,1,2,2,3,0">
+         <layout class="QVBoxLayout" name="verticalLayout" stretch="1,1,1,1,2,7,2,0">
           <item>
            <layout class="QHBoxLayout" name="horizontalLayout">
             <item>
@@ -85,6 +85,12 @@
               <property name="text">
                <string>日历显示日期显示</string>
               </property>
+              <property name="textFormat">
+               <enum>Qt::AutoText</enum>
+              </property>
+              <property name="scaledContents">
+               <bool>false</bool>
+              </property>
              </widget>
             </item>
             <item>
@@ -120,7 +126,26 @@
             <item>
              <widget class="QPushButton" name="Lock_bt">
               <property name="text">
-               <string>LOCK</string>
+               <string/>
+              </property>
+              <property name="icon">
+               <iconset resource="res.qrc">
+                <normaloff>:/images/images/锁屏.png</normaloff>:/images/images/锁屏.png</iconset>
+              </property>
+              <property name="iconSize">
+               <size>
+                <width>96</width>
+                <height>48</height>
+               </size>
+              </property>
+              <property name="autoDefault">
+               <bool>false</bool>
+              </property>
+              <property name="default">
+               <bool>false</bool>
+              </property>
+              <property name="flat">
+               <bool>false</bool>
               </property>
              </widget>
             </item>
@@ -157,7 +182,17 @@
             <item>
              <widget class="QPushButton" name="Account_bt">
               <property name="text">
-               <string>ACCOUNT</string>
+               <string/>
+              </property>
+              <property name="icon">
+               <iconset resource="res.qrc">
+                <normaloff>:/images/images/账户.png</normaloff>:/images/images/账户.png</iconset>
+              </property>
+              <property name="iconSize">
+               <size>
+                <width>96</width>
+                <height>48</height>
+               </size>
               </property>
              </widget>
             </item>
@@ -192,7 +227,7 @@
              </spacer>
             </item>
             <item>
-             <widget class="QPushButton" name="Account_bt_2">
+             <widget class="QPushButton" name="Start_bt">
               <property name="sizePolicy">
                <sizepolicy hsizetype="Minimum" vsizetype="Maximum">
                 <horstretch>0</horstretch>
@@ -200,7 +235,17 @@
                </sizepolicy>
               </property>
               <property name="text">
-               <string>START</string>
+               <string/>
+              </property>
+              <property name="icon">
+               <iconset resource="res.qrc">
+                <normaloff>:/images/images/开机.png</normaloff>:/images/images/开机.png</iconset>
+              </property>
+              <property name="iconSize">
+               <size>
+                <width>90</width>
+                <height>90</height>
+               </size>
               </property>
              </widget>
             </item>
@@ -235,9 +280,18 @@
              </spacer>
             </item>
             <item>
-             <widget class="QPushButton" name="Account_bt_3">
+             <widget class="QPushButton" name="Run_bt">
+              <property name="enabled">
+               <bool>true</bool>
+              </property>
               <property name="text">
-               <string>RUN</string>
+               <string>START</string>
+              </property>
+              <property name="iconSize">
+               <size>
+                <width>100</width>
+                <height>600</height>
+               </size>
               </property>
              </widget>
             </item>
@@ -272,9 +326,19 @@
              </spacer>
             </item>
             <item>
-             <widget class="QLabel" name="label_4">
+             <widget class="QPushButton" name="Light_bt">
               <property name="text">
-               <string>LIGHT</string>
+               <string/>
+              </property>
+              <property name="icon">
+               <iconset resource="res.qrc">
+                <normaloff>:/images/images/灯泡亮.jpg</normaloff>:/images/images/灯泡亮.jpg</iconset>
+              </property>
+              <property name="iconSize">
+               <size>
+                <width>110</width>
+                <height>165</height>
+               </size>
               </property>
              </widget>
             </item>
@@ -523,7 +587,7 @@ p, li { white-space: pre-wrap; }
                 </spacer>
                </item>
                <item>
-                <widget class="QPushButton" name="Account_bt_5">
+                <widget class="QPushButton" name="Exit_bt">
                  <property name="text">
                   <string>EXIT</string>
                  </property>
@@ -651,6 +715,8 @@ p, li { white-space: pre-wrap; }
    </property>
   </action>
  </widget>
- <resources/>
+ <resources>
+  <include location="res.qrc"/>
+ </resources>
  <connections/>
 </ui>
