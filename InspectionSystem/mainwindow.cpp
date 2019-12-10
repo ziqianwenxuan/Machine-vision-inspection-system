@@ -19,15 +19,21 @@ MainWindow::MainWindow(QWidget *parent)
     movie->start();
     ui->LogoShow->show();
     openpicture();
-//   ui->Run_bt->setGeometry(77,69,300,300);
-   ui->Run_bt->setGeometry(70,70,200,200);
-   ui->Run_bt->setStyleSheet("QPushButton{font-size:80px;\
-                                   color:yellow;\
-                              background-color:rgba(0,255,0,200);\
-                                     border-radius:100px;\
-                                       }");
+    //几个图标的初始化设定！！！
+    ui->Lock_bt->setIcon( QIcon(":/images/images/lock.png"));
+    ui->Lock_bt->setFlat(true);
+    ui->Account_bt->setIcon( QIcon(":/images/images/Account.png"));
+    ui->Account_bt->setFlat(true);
+    ui->Start_bt->setIcon( QIcon(":/images/images/close.png"));
+    ui->Start_bt->setFlat(true);
+//    ui->Run_bt->setIcon( QIcon(":/images/images/start.png"));
+//    ui->Run_bt->setFlat(true);
+    ui->Light_bt->setIcon( QIcon(":/images/images/light_up.jpg"));
+    ui->Light_bt->setFlat(true);
 
-
+     ui->Run_bt->setStyleSheet("QPushButton{border-image: url(:/images/images/start.png)}");
+     ui->Run_bt->setText("Start");
+     ui->Run_bt->setFlat(true);
 }
 
 MainWindow::~MainWindow()
@@ -38,12 +44,14 @@ void MainWindow::timerUpdate()
 {
     QDateTime time = QDateTime::currentDateTime();
 
-    QString str = time.toString("yyyy-MM-dd hh:mm:ss dddd");
+    QString str_date = time.toString("yyyy/MM/dd dddd");
+    QString str_time = time.toString(" hh:mm:ss ");
 
-    ui->dateTime->setText(str);
+    ui->date_label->setText(str_date);
+
+    ui->Time_label->setText(str_time);
 
 }
-
 
 void MainWindow::openpicture()
 {
@@ -56,9 +64,6 @@ void MainWindow::openpicture()
     scene_camera->addPixmap( QPixmap("../InspectionSystem/camera.png").scaled(ui->graphics_View->size()) );
     scene_date->addPixmap( QPixmap("../InspectionSystem/date.png") );
 
-//    ui->date_view->resize(ui->date_view->width() + 10, ui->date_view->height() + 10);
-//    ui->date_view->show();
-
 }
 
 void MainWindow::on_pushButton_clicked()
@@ -70,39 +75,93 @@ void MainWindow::on_pushButton_clicked()
     return;
 }
 
-
-
 void MainWindow::on_Exit_bt_clicked()
 {
-    if( QMessageBox::question(this,tr("Quit"), tr("Are you sure to quit this application?"),QMessageBox::Yes, QMessageBox::No )== QMessageBox::Yes);
+//    if( QMessageBox::question(this,tr("Quit"), tr("Are you sure to quit this application?"),QMessageBox::Yes, QMessageBox::No )== QMessageBox::Yes);
 
+//    {
+//            QApplication* app;
+//            app->quit();
+
+//            qDebug()<<"程序退出！";
+//        }
+
+    switch(QMessageBox::question(this,tr("Quit"),
+          tr("Are you sure to quit this application?"),
+          QMessageBox::Ok|QMessageBox::Cancel,QMessageBox::Ok))
     {
-            QApplication* app;
-            app->quit();
+    case QMessageBox::Ok:
+                    QApplication* app;
+                    app->quit();
 
-            qDebug()<<"程序退出！";
-        }
+                    qDebug()<<"程序退出！";
+        break;
+    case QMessageBox::Cancel:
+
+        break;
+    default:
+        break;
+    }
 
 }
 
 void MainWindow::on_Run_bt_clicked()
 {
-    if(this->ui->Run_bt->text()=="START"){
+    if(Run_bt)
+    {
+        ui->Run_bt->setStyleSheet("QPushButton{border-image: url(:/images/images/stop.png)}");
+         ui->Run_bt->setText("Stop");
+//       ui->Run_bt->setIcon( QIcon(":/images/images/stop.png"));
+       Run_bt = false;
+    }
+    else
+    {
+        ui->Run_bt->setStyleSheet("QPushButton{border-image: url(:/images/images/start.png)}");
+        ui->Run_bt->setText("Start");
+//      ui->Run_bt->setIcon( QIcon(":/images/images/start.png"));
+        Run_bt = true;
+     }
+}
 
-        ui->Run_bt->setStyleSheet("QPushButton{font-size:80px;\
-                                        color:yellow;\
-                                   background-color:rgba(255,0,0,200);\
-                                          border-radius:100px;\
-                                            }");
-        this->ui->Run_bt->setText("STOP");
-    }else {
-    ui->Run_bt->setStyleSheet("QPushButton{font-size:80px;\
-                                color:yellow;\
-                           background-color:rgba(0,255,0,200);\
-                                  border-radius:100px;\
-                                    }");
+void MainWindow::on_Lock_bt_clicked()
+{
+    //账户 界面锁定
+}
 
-        this->ui->Run_bt->setText("START");
+void MainWindow::on_Account_bt_clicked()
+{
+    //账户切换
+}
+
+void MainWindow::on_Start_bt_clicked()
+{
+
+    if(Start_bt)
+    {
+
+       ui->Start_bt->setIcon( QIcon(":/images/images/open.png"));
+       Start_bt = false;
+    }
+    else
+    {
+      ui->Start_bt->setIcon( QIcon(":/images/images/close.png"));
+      Start_bt = true;
+                                  }
+}
+
+void MainWindow::on_Light_bt_clicked()
+{
+
+    if(Light_bt)
+    {
+
+       ui->Light_bt->setIcon( QIcon(":/images/images/light_down.jpg"));
+       Light_bt = false;
+    }
+    else
+    {
+      ui->Light_bt->setIcon( QIcon(":/images/images/light_up.jpg"));
+      Light_bt = true;
                                   }
 
 }
