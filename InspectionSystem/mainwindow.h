@@ -5,6 +5,7 @@
 #include <QMessageBox>
 #include <QTimer>
 #include <QDateTime>
+#include <QGraphicsPixmapItem>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -19,8 +20,9 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_pushButton_clicked();
+
     void timerUpdate();
+    void  openpicture();
     void on_Exit_bt_clicked();
 
     void on_Run_bt_clicked();
@@ -35,10 +37,10 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-    void  openpicture();
+
     bool Run_bt = true;
     bool Start_bt = true;
     bool Light_bt = true;
-
+    QGraphicsScene *m_scene;
 };
 #endif // MAINWINDOW_H

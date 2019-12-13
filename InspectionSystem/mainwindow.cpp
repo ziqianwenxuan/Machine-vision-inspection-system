@@ -1,4 +1,5 @@
-﻿#include "mainwindow.h"
+﻿
+#include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "qdebug.h"
 #include <QMovie>
@@ -13,12 +14,13 @@ MainWindow::MainWindow(QWidget *parent)
     //日期/时间显示
     QTimer *timer = new QTimer(this);
     connect(timer,SIGNAL(timeout()),this,SLOT(timerUpdate()));
+    connect(timer,SIGNAL(timeout()),this,SLOT(openpicture()));
     timer->start(1000); //1000ms 触发一次
     QMovie *movie = new QMovie("../InspectionSystem/Yundee.gif");
     ui->LogoShow->setMovie(movie);
     movie->start();
     ui->LogoShow->show();
-    openpicture();
+//    openpicture();
     //几个图标的初始化设定！！！
     ui->Lock_bt->setIcon( QIcon(":/images/images/lock.png"));
     ui->Lock_bt->setFlat(true);
@@ -26,14 +28,13 @@ MainWindow::MainWindow(QWidget *parent)
     ui->Account_bt->setFlat(true);
     ui->Start_bt->setIcon( QIcon(":/images/images/close.png"));
     ui->Start_bt->setFlat(true);
-//    ui->Run_bt->setIcon( QIcon(":/images/images/start.png"));
-//    ui->Run_bt->setFlat(true);
     ui->Light_bt->setIcon( QIcon(":/images/images/light_up.jpg"));
     ui->Light_bt->setFlat(true);
+    ui->Run_bt->setStyleSheet("QPushButton{border-image: url(:/images/images/start.png)}");
+    ui->Run_bt->setText("Start");
+    ui->Run_bt->setFlat(true);
 
-     ui->Run_bt->setStyleSheet("QPushButton{border-image: url(:/images/images/start.png)}");
-     ui->Run_bt->setText("Start");
-     ui->Run_bt->setFlat(true);
+
 }
 
 MainWindow::~MainWindow()
@@ -56,35 +57,23 @@ void MainWindow::timerUpdate()
 void MainWindow::openpicture()
 {
 
+
     QGraphicsScene *scene_camera = new QGraphicsScene(this);
     QGraphicsScene *scene_date = new QGraphicsScene(this);
     ui->graphics_View->setScene(scene_camera);
     ui->date_view->setScene(scene_date);
-
+    // 如下了两句代码 就是让图片随着sence的大小而改变
     scene_camera->addPixmap( QPixmap("../InspectionSystem/camera.png").scaled(ui->graphics_View->size()) );
-    scene_date->addPixmap( QPixmap("../InspectionSystem/date.png") );
+    scene_date->addPixmap( QPixmap("../InspectionSystem/date.png").scaled(ui->date_view->size()));
+
+
+
 
 }
 
-void MainWindow::on_pushButton_clicked()
-{
-//    ui->label_2->setText(tr("Critical Message Box"));
-//    qDebug()<<QString("12345");
-    ui->textBrowser->setText(tr("Information Message Box"));
-    QMessageBox::information(this,tr("Information"),tr("RUNING Test"));
-    return;
-}
 
 void MainWindow::on_Exit_bt_clicked()
 {
-//    if( QMessageBox::question(this,tr("Quit"), tr("Are you sure to quit this application?"),QMessageBox::Yes, QMessageBox::No )== QMessageBox::Yes);
-
-//    {
-//            QApplication* app;
-//            app->quit();
-
-//            qDebug()<<"程序退出！";
-//        }
 
     switch(QMessageBox::question(this,tr("Quit"),
           tr("Are you sure to quit this application?"),
